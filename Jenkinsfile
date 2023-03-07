@@ -25,12 +25,15 @@ pipeline {
         stage('Deploy') {
           steps{
             script {
+                 if (env.BUILD_NUMBER == 3) {
 
                             sh """
+                            
                               docker stop task
                               docker rm task
                               docker run -d -p 5000:5000 --name task omarkorety/botit:V${BUILD_NUMBER}
                             """
+                 }
                 }
 
               }
